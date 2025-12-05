@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul class="left">
+        <li><a href="#" data-page="projects">PROJECTS</a></li>
+        <li><a href="#" data-page="about">ABOUT</a></li>
+        <li><a href="#" data-page="contact">CONTACT</a></li>
+      </ul>
+    <!-- <div class="center dot"></div> -->
+
+
+
+
+      <ul class="right">
+        <li><a href="https://github.com/harshit36singh" target="_blank" rel="noopener noreferrer">GITHUB</a></li>
+        <li><a href="https://www.linkedin.com/in/harshit-singh-5b466a296" target="_blank" rel="noopener noreferrer">LINKEDIN</a></li>
+        <li>
+          <a href="Harshit_Singh_Resume.pdf" download class="resume-btn" title="Download Resume" type="pdf" download="res.pdf">
+            &#8595;
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="about" class="page active about-page">
+      <div class="about-container">
+        <h1 class="titleui">Harshit <span>Singh</span></h1>
+        
+        <h2 class="subtitle">Java • Spring Boot • Dart • Flutter • Rust • Solana</h2>
+        <p class="about-text">
+          I’m a developer who loves building meaningful digital experiences — from crafting intuitive Flutter UIs
+          to engineering robust backend systems with Java Spring Boot. My work is driven by a balance of
+          <em>creativity</em> and <em>clarity</em>, ensuring every line of code serves both performance and purpose.
+          Whether I’m designing a mobile app or experimenting with Rust and Solana, I focus on creating elegant,
+          scalable solutions that feel effortless to use.
+        </p>
+      </div>
+    </section>
+    <section id="projects" class="page projects-page">
+      <h1 class="title">Projects</h1>
+      <p class="subtitle">A collection of my favorite work</p>
+
+      <div class="projects-wrapper">
+        <button class="scroll-btn left" onclick="scrollProjects(-1)">&#8592;</button>
+
+        <div class="projects-grid">
+          <div class="project-card">
+            <!-- <img src="images/todo-app.png" alt="ToDo App Screenshot"> -->
+            <h2>ToDo App</h2>
+            <p>A Flutter-based productivity app with calendar, notes, and routines integration.</p>
+            <a href="https://github.com/yourusername/todo-app" target="_blank">View Code →</a>
+          </div>
+
+          <div class="project-card">
+            <!-- <img src="images/portfolio.png" alt="Portfolio Screenshot"> -->
+            <h2>Portfolio Website</h2>
+            <p>Personal portfolio site built with HTML, CSS, and a dash of JavaScript magic.</p>
+            <a href="https://yourwebsite.com" target="_blank">View Live →</a>
+          </div>
+
+          <div class="project-card">
+            <!-- <img src="images/api-dashboard.png" alt="API Dashboard Screenshot"> -->
+            <h2>API Dashboard</h2>
+            <p>Interactive dashboard for monitoring REST APIs using React and Tailwind.</p>
+            <a href="https://github.com/yourusername/api-dashboard" target="_blank">View Code →</a>
+          </div>
+        </div>
+
+        <button class="scroll-btn right" onclick="scrollProjects(1)">&#8594;</button>
+      </div>
+    </section>
+
+
+
+    <section id="contact" class="page contact-page">
+      <h1 class="title">Get in Touch</h1>
+      <p class="desc">Let’s connect and collaborate! You can reach me via email or find me on my social platforms.</p>
+      <p class="subtitle">sing36harshit.com</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+<!-- <div class="cursor">
+  <div class="cursor-inner"></div>
+  <div class="cursor-outer"></div>
+</div> -->
+
+</html>
