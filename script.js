@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+ 
+
   const themeToggle = document.querySelector(".theme-toggle");
   const html = document.documentElement;
+  
   const savedTheme = localStorage.getItem("theme") || "light";
   html.setAttribute("data-theme", savedTheme);
   
@@ -45,14 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
   
   navClose.addEventListener("click", closeNavMenu);
   
-  // Close menu on escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && navOverlay.classList.contains("active")) {
       closeNavMenu();
     }
   });
 
-  
   const navLinks = document.querySelectorAll(".nav-link, .nav-menu-link");
   const pages = document.querySelectorAll(".page");
   
@@ -68,7 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       
       link.classList.add("active");
-      document.querySelectorAll(`[data-page="${pageId}"]`).forEach(l => {
+     
+      document.querySelectorAll('[data-page="' + pageId + '"]').forEach(l => {
         l.classList.add("active");
       });
       
@@ -88,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function(e) {
       const href = this.getAttribute("href");
@@ -104,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  
   const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px"
@@ -118,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, observerOptions);
 
+  // Observe elements that should animate in
   const animateElements = document.querySelectorAll(
     ".project-item, .service-block, .contact-method"
   );
@@ -145,7 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  
   let cursorX = 0;
   let cursorY = 0;
   let mouseX = 0;
@@ -156,19 +158,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentTheme = html.getAttribute("data-theme");
   const cursorColor = currentTheme === "dark" ? "#ffffff" : "#111111";
   
-  cursor.style.cssText = `
-    position: fixed;
-    width: 10px;
-    height: 10px;
-    background-color: ${cursorColor};
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 10000;
-    mix-blend-mode: difference;
-    transition: transform 0.2s ease, background-color var(--transition-theme);
-    display: none;
-  `;
+  cursor.style.position = "fixed";
+  cursor.style.width = "10px";
+  cursor.style.height = "10px";
+  cursor.style.backgroundColor = cursorColor;
+  cursor.style.borderRadius = "50%";
+  cursor.style.pointerEvents = "none";
+  cursor.style.zIndex = "10000";
+  cursor.style.mixBlendMode = "difference";
+  cursor.style.transition = "transform 0.2s ease, background-color 0.3s ease";
+  cursor.style.display = "none";
   
+  // Only add custom cursor on desktop
   if (window.innerWidth > 1024) {
     document.body.appendChild(cursor);
     cursor.style.display = "block";
@@ -182,13 +183,12 @@ document.addEventListener("DOMContentLoaded", () => {
       cursorX += (mouseX - cursorX) * 0.15;
       cursorY += (mouseY - cursorY) * 0.15;
       
-      cursor.style.transform = `translate(${cursorX - 5}px, ${cursorY - 5}px)`;
+      cursor.style.transform = "translate(" + (cursorX - 5) + "px, " + (cursorY - 5) + "px)";
       requestAnimationFrame(animateCursor);
     }
     
     animateCursor();
     
-    // Cursor hover effects
     const hoverElements = document.querySelectorAll("a, button");
     hoverElements.forEach(el => {
       el.addEventListener("mouseenter", () => {
@@ -200,6 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
   
   const header = document.querySelector("header");
   let lastScrollY = window.scrollY;
@@ -217,6 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
       header.style.boxShadow = "none";
     }
     
+    // Hide header on scroll down, show on scroll up
     if (currentScrollY > lastScrollY && currentScrollY > 200) {
       header.style.transform = "translateY(-100%)";
     } else {
@@ -247,7 +249,8 @@ document.addEventListener("DOMContentLoaded", () => {
   projectItems.forEach((item, index) => {
     item.style.opacity = "0";
     item.style.transform = "translateX(-20px)";
-    item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+    const delay = index * 0.1;
+    item.style.transition = "opacity 0.6s ease " + delay + "s, transform 0.6s ease " + delay + "s";
     projectObserver.observe(item);
   });
 
