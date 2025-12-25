@@ -871,8 +871,10 @@ main {
 
 .project-visual {
   position: relative;
-  aspect-ratio: 4/3;
+  aspect-ratio: 4 / 3;
+  overflow: hidden; /* 🔑 important */
 }
+
 
 .project-placeholder {
   width: 100%;
@@ -922,28 +924,27 @@ main {
 }
 
 .project-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
+  padding-right: 1rem;
+  max-width: calc(100% - 6rem);
+  line-height: 1.2;
 }
 
 .project-title::after {
   content: '*';
+  position: absolute;
+  top: 0.15em;
+  right: -0.6rem;
   font-size: 1.2rem;
   font-weight: 300;
   opacity: 0.6;
 }
 
 .project-number {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-hover);
-  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
+
 
 .project-tags {
   display: flex;
@@ -1427,4 +1428,20 @@ main {
   .nav-footer-links {
     gap: var(--spacing-sm);
   }
+ 
+
+}
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.project-visual video {
+  position: absolute;
+  inset: 0;            /* shorthand for top/right/bottom/left: 0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* fills box like an image */
+  display: block;
 }
