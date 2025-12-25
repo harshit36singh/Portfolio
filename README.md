@@ -4,7 +4,7 @@ My personal portfolio website showcasing my projects and skills.
 
 ## 🌐 Live Demo
 
-[View Portfolio](https://harshit36singh.github.io/Portfolio/) *(Update this link if hosted elsewhere)*
+[View Portfolio](https://harshit36singh.github.io/Portfolio/)
 
 ## 📁 Project Structure
 
