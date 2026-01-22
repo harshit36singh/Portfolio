@@ -23,24 +23,46 @@ document.addEventListener('DOMContentLoaded', () => {
   
   function highlightNavigation() {
     const scrollY = window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    let current = '';
     
-    sections.forEach(section => {
-      const sectionHeight = section.offsetHeight;
-      const sectionTop = section.offsetTop - 150;
-      const sectionId = section.getAttribute('id');
-      const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-      
-      if (navLink) {
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          navLink.style.color = '#64b5f6'; // Soft Blue accent
-        } else {
-          navLink.style.color = '';
+    // Check if we're at the bottom of the page
+    if (scrollY + windowHeight >= documentHeight - 50) {
+      // We're at the bottom, highlight the last section (contact)
+      current = sections[sections.length - 1].getAttribute('id');
+    } else {
+      // Normal scroll detection
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        
+        // Check if we're in this section (with some offset for navbar)
+        if (scrollY >= sectionTop - 200) {
+          current = section.getAttribute('id');
         }
-      }
+      });
+    }
+    
+    // Remove active class from all links
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.classList.remove('active');
     });
+    
+    // Add active class to current section's link
+    if (current) {
+      const activeLink = document.querySelector(`.nav-link[href="#${current}"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+    }
   }
   
+  // Run on scroll
   window.addEventListener('scroll', highlightNavigation);
+  
+  // Run on page load to highlight the current section
+  highlightNavigation();
   
   const observerOptions = {
     threshold: 0.1,
@@ -65,56 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
   
-  if (window.innerWidth > 1024) {
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    cursor.style.cssText = `
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      border: 2px solid #64b5f6;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.2s ease;
-      mix-blend-mode: difference;
-      display: none;
-    `;
-    document.body.appendChild(cursor);
-    
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.style.display = 'block';
-    });
-    
-    function animateCursor() {
-      cursorX += (mouseX - cursorX) * 0.1;
-      cursorY += (mouseY - cursorY) * 0.1;
-      
-      cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-      requestAnimationFrame(animateCursor);
-    }
-    
-    animateCursor();
-    
-    const hoverElements = document.querySelectorAll('a, button, .tech-card, .project-card');
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.transform += ' scale(1.5)';
-      });
-      
-      el.addEventListener('mouseleave', () => {
-        cursor.style.transform = cursor.style.transform.replace(' scale(1.5)', '');
-      });
-    });
-  }
-  
   const images = document.querySelectorAll('.project-image img');
   images.forEach(img => {
     if (!img.complete) {
@@ -126,9 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  console.log('%c👋 Hello Developer!', 'font-size: 20px; font-weight: bold; color: #333;');
-  console.log('%cLooking for something interesting? Check out my GitHub!', 'font-size: 14px; color: #666;');
-  console.log('%c🔗 https://github.com/harshit36singh', 'font-size: 14px; color: #333;');
   
   window.addEventListener('load', () => {
     document.body.style.opacity = '0';
@@ -152,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: #64b5f6;
+            background: #a78bfa;
             color: #0a0a0a;
             padding: 1rem 2rem;
             border-radius: 8px;
