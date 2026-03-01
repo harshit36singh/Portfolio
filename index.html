@@ -1,26 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-mode="springboot">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Harshit Singh — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="social-sidebar">
-    <a href="https://github.com/harshit36singh" target="_blank" aria-label="GitHub">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+
+<!-- Floating Mode Toggle Pill -->
+<div class="mode-pill" id="modePill">
+
+  <button class="pill-btn active" data-mode="springboot" id="btnSpringBoot">
+    <span class="pill-inner">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.205 16.392c-2.469 3.289-7.741 2.179-11.122 2.338 0 0-.599.034-1.201.133 0 0 .228-.097.519-.198 2.374-.821 3.496-.986 4.939-1.727 2.71-1.388 5.408-4.413 5.957-7.555-1.032 3.022-4.17 5.623-7.027 6.679-1.955.722-5.492 1.424-5.493 1.424a5.28 5.28 0 0 1-.143-.076c-2.405-1.17-2.475-6.38 1.894-8.059 1.916-.736 3.747-.332 5.818-.825 2.208-.525 4.766-2.18 5.805-4.344 1.156 3.022 4.201 6.814 0 11.21z"/>
       </svg>
-    </a>
+      <span>Spring-Boot</span>
+    </span>
+  </button>
+
+  <button class="pill-btn" data-mode="flutter" id="btnFlutter">
+    <span class="pill-inner">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M14.314 0L2.3 12 6 15.7 21.684 0h-7.37zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/>
+      </svg>
+      <span>Flutter</span>
+    </span>
+  </button>
+
+  <div class="pill-slider"></div>
+</div>
+
+  <!-- Social Sidebar -->
+  <div class="social-sidebar">
     <a href="https://www.linkedin.com/in/harshit-singh-h36" target="_blank" aria-label="LinkedIn">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-      </svg>
-    </a>
-    <a href="https://leetcode.com/u/harshits36/" target="_blank" aria-label="LeetCode">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/>
       </svg>
     </a>
     <a href="mailto:singh36harshit@gmail.com" aria-label="Email">
@@ -32,6 +51,7 @@
     <div class="sidebar-line"></div>
   </div>
 
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-container">
       <ul class="nav-menu">
@@ -43,15 +63,25 @@
     </div>
   </nav>
 
+  <!-- ===================== ABOUT ===================== -->
   <section id="about" class="about-section">
     <div class="container">
       <div class="about-content">
-        <p class="about-greeting">Hey, I am</p>
+        <p class="about-greeting">Hi, I am</p>
         <h1 class="about-name">Harshit Singh</h1>
-        <p class="about-description">
-          My expertise lies particularly in <strong>Spring Boot</strong> and <strong>Flutter</strong>. 
-          I build APIs and Apps.
+
+        <!-- Spring Boot about -->
+        <p class="about-description mode-content springboot-content">
+          My expertise lies particularly in <strong>Spring Boot</strong>.
+          I build APIs and Scalable Backend.
         </p>
+
+        <!-- Flutter about -->
+        <p class="about-description mode-content flutter-content" style="display:none">
+          My expertise lies particularly in <strong>Flutter</strong>.
+          I build beautiful, performant cross-platform apps.
+        </p>
+
         <div class="about-buttons">
           <a href="mailto:singh36harshit@gmail.com" class="btn btn-primary">Get In Touch</a>
           <a href="assets/Harshit_Singh_CV.pdf" download class="btn btn-secondary">Resume</a>
@@ -60,149 +90,255 @@
     </div>
   </section>
 
+  <!-- ===================== TECHNOLOGIES ===================== -->
   <section id="technologies" class="technologies-section">
     <div class="container">
       <div class="tech-header">
         <div class="tech-accent"></div>
         <h2>Technologies</h2>
       </div>
-      <p class="tech-subtitle">I've worked with a range of technologies related to app development and microservices .</p>
-      
-      <div class="tech-grid">
-        <div class="tech-card">
-          <div class="tech-icon">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="2" y="3" width="20" height="14" rx="2"/>
-              <line x1="2" y1="7" x2="22" y2="7"/>
-              <line x1="2" y1="11" x2="22" y2="11"/>
-            </svg>
+
+      <!-- Spring Boot Tech -->
+      <div class="mode-content springboot-content">
+        <p class="tech-subtitle">I've worked with a range of technologies related to app development and microservices.</p>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <h3>Backend</h3>
+            <p>Experience with Java, Springboot.</p>
           </div>
-          <h3>Backend</h3>
-          <p>Experience with Java, Springboot.</p>
+          <div class="tech-card">
+            <h3>App Development</h3>
+            <p>Experience with Flutter, Hive, Provider, Firebase</p>
+          </div>
+          <div class="tech-card">
+            <h3>Languages</h3>
+            <p>Proficient in Java, Python and decent experience in Dart and Rust.</p>
+          </div>
         </div>
-        
-        <div class="tech-card">
-          <div class="tech-icon">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
-              <path d="M2 17L12 22L22 17"/>
-              <path d="M2 12L12 17L22 12"/>
-            </svg>
+      </div>
+
+      <!-- Flutter Tech -->
+      <div class="mode-content flutter-content" style="display:none">
+        <p class="tech-subtitle">I've worked with a range of technologies related to app development and cross-platform solutions.</p>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <h3>App Development</h3>
+            <p>Experience with Flutter, Hive, Provider, Firebase</p>
           </div>
-          <h3>App Development</h3>
-          <p>Experience with Flutter, Hive, Provider, Firebase</p>
-        </div>
-        
-        <div class="tech-card">
-          <div class="tech-icon">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-              <polyline points="2 17 12 22 22 17"/>
-              <polyline points="2 12 12 17 22 12"/>
-            </svg>
+          <div class="tech-card">
+            <h3>Backend Integration</h3>
+            <p>Experience with Spring Boot APIs, Firebase, RESTful services</p>
           </div>
-          <h3>Languages</h3>
-          <p>Proficient in Java, Python and decent experience in Dart and Rust.</p>
+          <div class="tech-card">
+            <h3>Languages</h3>
+            <p>Proficient in Dart, Java, Python and decent experience in Rust.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ===================== PROJECTS ===================== -->
   <section id="projects" class="projects-section">
     <div class="container">
-      <div class="project-featured">
-        <div class="project-content">
-          <p class="project-label">Project 1</p>
-          <h3 class="project-name">LStats — LeetCode Tracker</h3>
-          <div class="project-description">
-            <p>
-              A full-stack LeetCode statistics tracking platform with real-time features. 
-              Includes friend system with leaderboards, group collaboration, live chat via WebSocket, 
-              and comprehensive progress tracking with heatmaps. Built with Spring Boot backend and 
-              Flutter mobile app with JWT authentication.
-            </p>
-          </div>
-          <div class="project-tech">
-            <span>Spring Boot</span>
-            <span>Flutter</span>
-            <span>MySQL</span>
-            <span>WebSocket</span>
-            <span>JWT</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/harshit36singh/lstats" target="_blank" aria-label="GitHub">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <div class="project-image">
-          <img src="assets/LStats.png" alt="LStats Project" />
-        </div>
-      </div>
 
-      <div class="project-featured reverse">
-        <div class="project-content">
-          <p class="project-label">Project 2</p>
-          <h3 class="project-name">API Limiter</h3>
-          <div class="project-description">
-            <p>
-              A comprehensive API rate limiting and monitoring platform. Features token-bucket based 
-              rate limiting using Redis, API key management per project, real-time usage logging and 
-              request tracking. Built with Spring Boot backend and React frontend with JWT-based authentication.
-            </p>
+      <!-- Spring Boot Projects -->
+      <div class="mode-content springboot-content">
+        <div class="project-featured">
+          <div class="project-content">
+            <p class="project-label">Project 1</p>
+            <h3 class="project-name">LStats — LeetCode Tracker</h3>
+            <div class="project-description">
+              <p>
+                A full-stack LeetCode statistics tracking platform with real-time features.
+                Includes friend system with leaderboards, group collaboration, live chat via WebSocket,
+                and comprehensive progress tracking with heatmaps. Built with Spring Boot backend and
+                Flutter mobile app with JWT authentication.
+              </p>
+            </div>
+            <div class="project-tech">
+              <span>Spring Boot</span>
+              <span>Flutter</span>
+              <span>MySQL</span>
+              <span>WebSocket</span>
+              <span>JWT</span>
+            </div>
+            <div class="project-links">
+            </div>
           </div>
-          <div class="project-tech">
-            <span>Spring Boot</span>
-            <span>React</span>
-            <span>MySQL</span>
-            <span>Redis</span>
-            <span>JWT</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/harshit36singh/apilimiter" target="_blank" aria-label="GitHub">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </a>
+          <div class="project-image">
+            <img src="assets/LStats.png" alt="LStats Project" />
           </div>
         </div>
-        <div class="project-image">
-          <video autoplay muted loop playsinline>
-            <source src="assets/apilimiter.mp4" type="video/mp4">
-            <img src="assets/APILimiter.png" alt="API Limiter Project" />
-          </video>
+
+        <div class="project-featured reverse">
+          <div class="project-content">
+            <p class="project-label">Project 2</p>
+            <h3 class="project-name">API Limiter</h3>
+            <div class="project-description">
+              <p>
+                A comprehensive API rate limiting and monitoring platform. Features token-bucket based
+                rate limiting using Redis, API key management per project, real-time usage logging and
+                request tracking. Built with Spring Boot backend and React frontend with JWT-based authentication.
+              </p>
+            </div>
+            <div class="project-tech">
+              <span>Spring Boot</span>
+              <span>React</span>
+              <span>MySQL</span>
+              <span>Redis</span>
+              <span>JWT</span>
+            </div>
+            <div class="project-links">
+            </div>
+          </div>
+          <div class="project-image">
+            <video autoplay muted loop playsinline>
+              <source src="assets/apilimiter.mp4" type="video/mp4">
+              <img src="assets/APILimiter.png" alt="API Limiter Project" />
+            </video>
+          </div>
         </div>
-      </div>
+      </div><!-- end springboot projects -->
+
+      <!-- Flutter Projects -->
+      <div class="mode-content flutter-content" style="display:none">
+        <div class="project-featured">
+          <div class="project-content">
+            <p class="project-label">Project 1</p>
+            <h3 class="project-name">LStats — Mobile App</h3>
+            <div class="project-description">
+              <p>
+                The Flutter mobile client for the LStats platform. A fully-featured LeetCode tracker
+                with friend leaderboards, group rooms, live chat, and beautiful progress heatmaps — all
+                built with Flutter, Provider for state, and JWT-authenticated REST API integration.
+              </p>
+            </div>
+            <div class="project-tech">
+              <span>Flutter</span>
+              <span>Dart</span>
+              <span>Provider</span>
+              <span>Hive</span>
+              <span>JWT</span>
+            </div>
+            <div class="project-links">
+            </div>
+          </div>
+          <div class="project-image">
+            <img src="assets/LStats.png" alt="LStats Flutter App" />
+          </div>
+        </div>
+
+        <div class="project-featured reverse">
+          <div class="project-content">
+            <p class="project-label">Project 2</p>
+            <h3 class="project-name">Planz — Task Management App</h3>
+            <div class="project-description">
+              <p>
+                A modern task management Flutter application with voice input, scheduling, and Firebase authentication.
+                Features priority system, calendar view, 24-hour timeline, and natural language processing for voice commands.
+                Includes soft delete system, task statistics, and local storage with Hive database.
+              </p>
+            </div>
+            <div class="project-tech">
+              <span>Flutter</span>
+              <span>Firebase</span>
+              <span>Riverpod</span>
+              <span>Hive</span>
+              <span>Speech-to-Text</span>
+            </div>
+            <div class="project-links">
+            </div>
+          </div>
+          <div class="project-image placeholder-image">
+            <div class="placeholder-inner">
+             <div class="project-image">
+            <img src="assets/img7.png" alt="LStats Flutter App" />
+          </div>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="project-featured">
+          <div class="project-content">
+            <p class="project-label">Project 3</p>
+            <h3 class="project-name">Tempora — Weather App</h3>
+            <div class="project-description">
+              <p>
+                A modern, minimalist Flutter weather application focused on clean UI and gesture-based navigation.
+                Supports multiple saved cities with horizontal swipe navigation, location-based weather, and vertical
+                swipe for detailed views. Features dynamic weather-based themes and smooth animations.
+              </p>
+            </div>
+            <div class="project-tech">
+              <span>Flutter</span>
+              <span>Dart</span>
+              <span>OpenWeatherMap API</span>
+              <span>Geolocator</span>
+              <span>SharedPreferences</span>
+            </div>
+            <div class="project-links">
+            </div>
+          </div>
+          <div class="project-image placeholder-image">
+            <div class="placeholder-inner">
+              <div class="project-image">
+            <img src="assets/tempora.png" alt="LStats Flutter App" />
+          </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-featured reverse">
+          <div class="project-content">
+            <p class="project-label">Project 4</p>
+            <h3 class="project-name">NextUp — Release Tracker</h3>
+            <div class="project-description">
+              <p>
+                A sleek Flutter app with premium black UI for tracking upcoming movies, TV shows, and anime releases.
+                Features multi-source tracking via TMDB and AniList, local notifications, shareable lists, and blind mode
+                for spoiler-free browsing. All data stored locally with offline-first architecture.
+              </p>
+            </div>
+            <div class="project-tech">
+              <span>Flutter</span>
+              <span>Provider</span>
+              <span>Hive</span>
+              <span>TMDB API</span>
+              <span>Local Notifications</span>
+            </div>
+            <div class="project-links">
+            </div>
+          </div>
+          <div class="project-image placeholder-image">
+            <div class="placeholder-inner">
+              <div class="project-image">
+            <img src="assets/nextup.png" alt="LStats Flutter App" />
+          </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- end flutter projects -->
+
     </div>
   </section>
 
+  <!-- ===================== CONTACT ===================== -->
   <section id="contact" class="contact-section">
     <div class="container">
       <div class="contact-content">
         <h2>Get In Touch</h2>
         <p class="contact-description">
-          If you need to know anything about my projects or want to just interact, 
+          If you need to know anything about my projects or want to just interact,
           I will respond back so feel free to contact me.
         </p>
         <a href="mailto:singh36harshit@gmail.com" class="btn btn-primary btn-large">Email</a>
-        
-        <!-- Mobile Social Links -->
+
         <div class="mobile-social-links">
-          <a href="https://github.com/harshit36singh" target="_blank" aria-label="GitHub">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-          </a>
           <a href="https://www.linkedin.com/in/harshit-singh-h36" target="_blank" aria-label="LinkedIn">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-            </svg>
-          </a>
-          <a href="https://leetcode.com/u/harshits36/" target="_blank" aria-label="LeetCode">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/>
             </svg>
           </a>
           <a href="mailto:singh36harshit@gmail.com" aria-label="Email">
