@@ -1,20 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
 
 /* =============================================
-   CSS VARIABLES — Spring Boot (default)
-   Black bg + Violet accent (old design)
+   CSS VARIABLES — Flutter (default, now first)
    ============================================= */
 :root {
-  --color-bg: #0f0f0f;
+  --color-bg: #0b1117;
   --color-text: #ffffff;
-  --color-border: #2a2a2a;
-  --color-card-bg: #0f0f0f;
-  --color-hover: #aaaaaa;
+  --color-border: #1a2a2e;
+  --color-card-bg: #0b1117;
+  --color-hover: #8faab0;
 
-  /* Spring Boot — violet (original design) */
-  --color-accent: #a78bfa;
-  --color-accent-dark: #8b5cf6;
-  --color-accent-light: #c4b5fd;
+  /* Flutter — teal palette (now default) */
+  --color-accent: #2dd4bf;
+  --color-accent-dark: #0d9488;
+  --color-accent-light: #5eead4;
 
   --font-main: 'Inter', sans-serif;
   --font-mono: 'Space Mono', monospace;
@@ -23,18 +22,17 @@
 }
 
 /* =============================================
-   Flutter mode — deep teal / emerald palette
-   Dark bg shifts slightly warmer/cooler
+   Spring Boot mode — violet palette
    ============================================= */
-[data-mode="flutter"] {
-  --color-bg: #0b1117;
-  --color-border: #1a2a2e;
-  --color-card-bg: #0e1a20;
-  --color-hover: #8faab0;
+[data-mode="springboot"] {
+  --color-bg: #0f0f0f;
+  --color-border: #2a2a2a;
+  --color-card-bg: #0f0f0f;
+  --color-hover: #aaaaaa;
 
-  --color-accent: #2dd4bf;       /* teal-400 */
-  --color-accent-dark: #0d9488;  /* teal-600 */
-  --color-accent-light: #5eead4; /* teal-300 */
+  --color-accent: #a78bfa;
+  --color-accent-dark: #8b5cf6;
+  --color-accent-light: #c4b5fd;
 }
 
 /* =============================================
@@ -134,17 +132,10 @@ section {
   outline: none;
 }
 
-.pill-btn:focus {
-  outline: none;
-}
+.pill-btn:focus { outline: none; }
+.pill-btn:active { outline: none; }
 
-.pill-btn:active {
-  outline: none;
-}
-
-.pill-btn.active {
-  color: #0a0a0a;
-}
+.pill-btn.active { color: #0a0a0a; }
 
 .pill-inner {
   display: flex;
@@ -159,7 +150,7 @@ section {
   top: 5px;
   left: 5px;
   height: calc(100% - 10px);
-  width: calc(50% - 3px);
+  width: calc(50% - 7px);
   background: var(--color-accent);
   border-radius: 100px;
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
@@ -168,8 +159,10 @@ section {
   pointer-events: none;
 }
 
-[data-mode="flutter"] .pill-slider {
-  transform: translateX(calc(100% + 2px));
+/* Flutter is first pill slot — slider starts at left (default) */
+/* Spring Boot is second pill slot — slider shifts right */
+[data-mode="springboot"] .pill-slider {
+  transform: translateX(calc(100% + 4px));
 }
 
 /* =============================================
@@ -309,14 +302,33 @@ section {
 }
 
 /* ==================================================
-   NAME — same animated rainbow gradient both modes
-   (original from old design)
+   NAME — animated gradient, mode-aware
    ================================================== */
 .about-name {
   font-size: clamp(3rem, 8vw, 5rem);
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: 2rem;
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #67e8f9 12%,
+    #22d3ee 24%,
+    #2dd4bf 36%,
+    #10b981 48%,
+    #22c55e 60%,
+    #a3e635 72%,
+    #fde047 84%,
+    #2dd4bf 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientFlow 5s ease infinite;
+}
+
+[data-mode="springboot"] .about-name {
   background: linear-gradient(
     90deg,
     #ffffff 0%,
@@ -330,25 +342,6 @@ section {
   );
   background-size: 200% 100%;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientFlow 5s ease infinite;
-}
-[data-mode="flutter"] .about-name {
-  background: linear-gradient(
-    90deg,
-   #ffffff 0%,    /* white flash */
-    #67e8f9 12%,   /* cyan */
-    #22d3ee 24%,   /* electric cyan */
-    #2dd4bf 36%,   /* teal */
-    #10b981 48%,   /* emerald */
-    #22c55e 60%,   /* green */
-    #a3e635 72%,   /* lime */
-    #fde047 84%,   /* yellow */
-    #2dd4bf 100%   /* snap back */
-  );
-  background-size: 200% 100%;
-    -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradientFlow 5s ease infinite;
@@ -517,7 +510,6 @@ section {
   max-width: 700px;
 }
 
-/* BOTH Spring Boot AND Flutter tech cards — flat, no border, minimal */
 .tech-card {
   background: transparent;
   border: none;
@@ -605,25 +597,13 @@ section {
   margin-bottom: 1.5rem;
 }
 
+/* Project description — transparent background, no border, matches page */
 .project-description {
-  background-color: var(--color-card-bg);
-  padding: 2rem;
-  border-radius: 8px;
-  border: 1px solid var(--color-border);
+  background-color: transparent;
+  padding: 0;
+  border: none;
   margin-bottom: 1.5rem;
   position: relative;
-  transition: background-color 0.4s ease, border-color 0.4s ease;
-}
-
-/* Flutter: accent top line on description card */
-[data-mode="flutter"] .project-description::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, var(--color-accent), transparent);
-  border-radius: 8px 8px 0 0;
-  opacity: 0.6;
 }
 
 .project-description p {
@@ -657,22 +637,23 @@ section {
   transform: translateY(-3px);
 }
 
+/* Project image — no hover border/shadow in any mode */
 .project-image {
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid var(--color-border);
+  border: none;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.4s ease;
   min-height: 260px;
-  background: var(--color-card-bg);
+  background: transparent;
+  transition: none;
 }
 
-[data-mode="flutter"] .project-image:hover {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 30px rgba(45, 212, 191, 0.1);
+.project-image:hover {
+  border: none;
+  box-shadow: none;
 }
 
 .project-image img,
@@ -684,7 +665,7 @@ section {
 }
 
 .placeholder-image {
-  background: var(--color-card-bg);
+  background: transparent;
   min-height: 260px;
 }
 
@@ -723,7 +704,7 @@ section {
   .project-featured { margin-bottom: 3rem; }
   .project-label { font-size: 0.8rem; }
   .project-name { font-size: 1.6rem; margin-bottom: 1rem; }
-  .project-description { padding: 1.5rem; margin-bottom: 1rem; }
+  .project-description { margin-bottom: 1rem; }
   .project-description p { font-size: 0.95rem; }
   .project-tech { gap: 0.75rem; margin-bottom: 1rem; }
   .project-tech span { font-size: 0.8rem; }
@@ -732,7 +713,6 @@ section {
 @media (max-width: 480px) {
   .projects-section { padding: 60px 0; }
   .project-name { font-size: 1.4rem; }
-  .project-description { padding: 1.25rem; }
   .project-description p { font-size: 0.9rem; }
   .project-tech span { font-size: 0.75rem; }
 }
@@ -813,21 +793,20 @@ section {
 @media (max-width: 768px) {
   .container { padding: 0 1.5rem; }
   .mode-pill { bottom: 20px; }
-  .pill-btn { 
-    padding: 9px 14px; 
-    font-size: 0.72rem; 
+  .pill-btn {
+    padding: 9px 14px;
+    font-size: 0.72rem;
     gap: 5px;
     min-width: 110px;
   }
   .pill-btn svg { width: 12px; height: 12px; }
 }
 
-
 @media (max-width: 480px) {
   .container { padding: 0 1rem; }
-  .pill-btn { 
-    padding: 8px 12px; 
-    font-size: 0.68rem; 
+  .pill-btn {
+    padding: 8px 12px;
+    font-size: 0.68rem;
     gap: 4px;
     min-width: 95px;
   }

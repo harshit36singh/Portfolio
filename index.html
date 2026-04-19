@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-mode="springboot">
+<html lang="en" data-mode="flutter">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Harshit Singh — Portfolio</title>
+  <title>Harshit Singh</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,21 +14,21 @@
 <!-- Floating Mode Toggle Pill -->
 <div class="mode-pill" id="modePill">
 
-  <button class="pill-btn active" data-mode="springboot" id="btnSpringBoot">
-    <span class="pill-inner">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M20.205 16.392c-2.469 3.289-7.741 2.179-11.122 2.338 0 0-.599.034-1.201.133 0 0 .228-.097.519-.198 2.374-.821 3.496-.986 4.939-1.727 2.71-1.388 5.408-4.413 5.957-7.555-1.032 3.022-4.17 5.623-7.027 6.679-1.955.722-5.492 1.424-5.493 1.424a5.28 5.28 0 0 1-.143-.076c-2.405-1.17-2.475-6.38 1.894-8.059 1.916-.736 3.747-.332 5.818-.825 2.208-.525 4.766-2.18 5.805-4.344 1.156 3.022 4.201 6.814 0 11.21z"/>
-      </svg>
-      <span>Spring-Boot</span>
-    </span>
-  </button>
-
-  <button class="pill-btn" data-mode="flutter" id="btnFlutter">
+  <button class="pill-btn active" data-mode="flutter" id="btnFlutter">
     <span class="pill-inner">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
         <path d="M14.314 0L2.3 12 6 15.7 21.684 0h-7.37zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/>
       </svg>
       <span>Flutter</span>
+    </span>
+  </button>
+
+  <button class="pill-btn" data-mode="springboot" id="btnSpringBoot">
+    <span class="pill-inner">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.205 16.392c-2.469 3.289-7.741 2.179-11.122 2.338 0 0-.599.034-1.201.133 0 0 .228-.097.519-.198 2.374-.821 3.496-.986 4.939-1.727 2.71-1.388 5.408-4.413 5.957-7.555-1.032 3.022-4.17 5.623-7.027 6.679-1.955.722-5.492 1.424-5.493 1.424a5.28 5.28 0 0 1-.143-.076c-2.405-1.17-2.475-6.38 1.894-8.059 1.916-.736 3.747-.332 5.818-.825 2.208-.525 4.766-2.18 5.805-4.344 1.156 3.022 4.201 6.814 0 11.21z"/>
+      </svg>
+      <span>Spring-Boot</span>
     </span>
   </button>
 
@@ -70,21 +70,22 @@
         <p class="about-greeting">Hi, I am</p>
         <h1 class="about-name">Harshit Singh</h1>
 
-        <!-- Spring Boot about -->
-        <p class="about-description mode-content springboot-content">
-          My expertise lies particularly in <strong>Spring Boot</strong>.
-          I build APIs and Scalable Backend.
-        </p>
-
-        <!-- Flutter about -->
-        <p class="about-description mode-content flutter-content" style="display:none">
+        <!-- Flutter about (shown first) -->
+        <p class="about-description mode-content flutter-content">
           My expertise lies particularly in <strong>Flutter</strong>.
           I build beautiful, performant cross-platform apps.
         </p>
 
+        <!-- Spring Boot about -->
+        <p class="about-description mode-content springboot-content" style="display:none">
+          My expertise lies particularly in <strong>Spring Boot</strong>.
+          I build APIs and Scalable Backend.
+        </p>
+
         <div class="about-buttons">
           <a href="mailto:singh36harshit@gmail.com" class="btn btn-primary">Get In Touch</a>
-          <a href="assets/Harshit_Singh_CV.pdf" download class="btn btn-secondary">Resume</a>
+          <!-- Resume button — src swapped by JS based on mode -->
+          <a href="assets/Harshit_CV.pdf" download id="resumeBtn" class="btn btn-secondary">Resume</a>
         </div>
       </div>
     </div>
@@ -98,27 +99,8 @@
         <h2>Technologies</h2>
       </div>
 
-      <!-- Spring Boot Tech -->
-      <div class="mode-content springboot-content">
-        <p class="tech-subtitle">I've worked with a range of technologies related to app development and microservices.</p>
-        <div class="tech-grid">
-          <div class="tech-card">
-            <h3>Backend</h3>
-            <p>Experience with Spring Boot, Spring Security, RESTful APIs, JWT.</p>
-          </div>
-          <div class="tech-card">
-            <h3>Databases &amp; Caching</h3>
-            <p>Experience with MySQL, PostgreSQL, Redis.</p>
-          </div>
-          <div class="tech-card">
-            <h3>DevOps &amp; Testing</h3>
-            <p>Experience with Docker, JUnit, Mockito.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Flutter Tech -->
-      <div class="mode-content flutter-content" style="display:none">
+      <!-- Flutter Tech (shown first) -->
+      <div class="mode-content flutter-content">
         <p class="tech-subtitle">I've worked with a range of technologies related to app development and cross-platform solutions.</p>
         <div class="tech-grid">
           <div class="tech-card">
@@ -135,6 +117,25 @@
           </div>
         </div>
       </div>
+
+      <!-- Spring Boot Tech -->
+      <div class="mode-content springboot-content" style="display:none">
+        <p class="tech-subtitle">I've worked with a range of technologies related to app development and microservices.</p>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <h3>Backend</h3>
+            <p>Experience with Spring Boot, Spring Security, RESTful APIs, JWT.</p>
+          </div>
+          <div class="tech-card">
+            <h3>Databases &amp; Caching</h3>
+            <p>Experience with MySQL, PostgreSQL, Redis.</p>
+          </div>
+          <div class="tech-card">
+            <h3>DevOps &amp; Testing</h3>
+            <p>Experience with Docker, JUnit, Mockito.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -142,67 +143,8 @@
   <section id="projects" class="projects-section">
     <div class="container">
 
-      <!-- Spring Boot Projects -->
-      <div class="mode-content springboot-content">
-        <div class="project-featured">
-          <div class="project-content">
-            <p class="project-label">Project 1</p>
-            <h3 class="project-name">LStats — LeetCode Tracker</h3>
-            <div class="project-description">
-              <p>
-                A full-stack LeetCode statistics tracking platform with real-time features.
-                Includes friend system with leaderboards, group collaboration, live chat via WebSocket,
-                and comprehensive progress tracking with heatmaps. Built with Spring Boot backend and
-                Flutter mobile app with JWT authentication.
-              </p>
-            </div>
-            <div class="project-tech">
-              <span>Spring Boot</span>
-              <span>Flutter</span>
-              <span>MySQL</span>
-              <span>WebSocket</span>
-              <span>JWT</span>
-            </div>
-            <div class="project-links">
-            </div>
-          </div>
-          <div class="project-image">
-            <img src="assets/LStats.png" alt="LStats Project" />
-          </div>
-        </div>
-
-        <div class="project-featured reverse">
-          <div class="project-content">
-            <p class="project-label">Project 2</p>
-            <h3 class="project-name">API Limiter</h3>
-            <div class="project-description">
-              <p>
-                A comprehensive API rate limiting and monitoring platform. Features token-bucket based
-                rate limiting using Redis, API key management per project, real-time usage logging and
-                request tracking. Built with Spring Boot backend and React frontend with JWT-based authentication.
-              </p>
-            </div>
-            <div class="project-tech">
-              <span>Spring Boot</span>
-              <span>React</span>
-              <span>MySQL</span>
-              <span>Redis</span>
-              <span>JWT</span>
-            </div>
-            <div class="project-links">
-            </div>
-          </div>
-          <div class="project-image">
-            <video autoplay muted loop playsinline>
-              <source src="assets/apilimiter.mp4" type="video/mp4">
-              <img src="assets/APILimiter.png" alt="API Limiter Project" />
-            </video>
-          </div>
-        </div>
-      </div><!-- end springboot projects -->
-
-      <!-- Flutter Projects -->
-      <div class="mode-content flutter-content" style="display:none">
+      <!-- Flutter Projects (shown first) -->
+      <div class="mode-content flutter-content">
         <div class="project-featured">
           <div class="project-content">
             <p class="project-label">Project 1</p>
@@ -221,8 +163,7 @@
               <span>Hive</span>
               <span>JWT</span>
             </div>
-            <div class="project-links">
-            </div>
+            <div class="project-links"></div>
           </div>
           <div class="project-image">
             <img src="assets/LStats.png" alt="LStats Flutter App" />
@@ -247,16 +188,10 @@
               <span>Hive</span>
               <span>Speech-to-Text</span>
             </div>
-            <div class="project-links">
-            </div>
+            <div class="project-links"></div>
           </div>
-          <div class="project-image placeholder-image">
-            <div class="placeholder-inner">
-             <div class="project-image">
-            <img src="assets/img7.png" alt="LStats Flutter App" />
-          </div>
-              
-            </div>
+          <div class="project-image">
+            <img src="assets/img7.png" alt="Planz Task Management App" />
           </div>
         </div>
 
@@ -278,15 +213,10 @@
               <span>Geolocator</span>
               <span>SharedPreferences</span>
             </div>
-            <div class="project-links">
-            </div>
+            <div class="project-links"></div>
           </div>
-          <div class="project-image placeholder-image">
-            <div class="placeholder-inner">
-              <div class="project-image">
-            <img src="assets/tempora.png" alt="LStats Flutter App" />
-          </div>
-            </div>
+          <div class="project-image">
+            <img src="assets/tempora.png" alt="Tempora Weather App" />
           </div>
         </div>
 
@@ -308,18 +238,98 @@
               <span>TMDB API</span>
               <span>Local Notifications</span>
             </div>
-            <div class="project-links">
-            </div>
+            <div class="project-links"></div>
           </div>
-          <div class="project-image placeholder-image">
-            <div class="placeholder-inner">
-              <div class="project-image">
-            <img src="assets/nextup.png" alt="LStats Flutter App" />
+          <div class="project-image">
+            <img src="assets/nextup.png" alt="NextUp App" />
           </div>
+        </div>
+
+        <div class="project-featured">
+          <div class="project-content">
+            <p class="project-label">Project 5</p>
+            <h3 class="project-name">Dotz — Live Wallpaper</h3>
+            <div class="project-description">
+              <p>
+                A beautiful Flutter &amp; Native Android app that generates dynamic, live wallpapers visualizing your time.
+                Track your year, your life, or your specific goals using highly customizable dot grids and glass aesthetics.
+                Features a true native Android WallpaperService engine with multiple time perspectives — Year, Weekly/Monthly,
+                Life, and Goal modes — plus rich dot shapes including Glass Bubbles, Stars, and Squares.
+                Supports custom background images, color theming, inspirational quotes via API, and a lockscreen simulation preview.
+              </p>
             </div>
+            <div class="project-tech">
+              <span>Flutter</span>
+              <span>Dart</span>
+              <span>Kotlin</span>
+              <span>WallpaperService</span>
+              <span>Hive</span>
+              <span>Riverpod</span>
+            </div>
+            <div class="project-links"></div>
+          </div>
+          <div class="project-image">
+            <img src="assets/dotz.png" alt="Dotz Live Wallpaper App" />
           </div>
         </div>
       </div><!-- end flutter projects -->
+
+      <!-- Spring Boot Projects -->
+      <div class="mode-content springboot-content" style="display:none">
+        <div class="project-featured">
+          <div class="project-content">
+            <p class="project-label">Project 1</p>
+            <h3 class="project-name">LStats — LeetCode Tracker</h3>
+            <div class="project-description">
+              <p>
+                A full-stack LeetCode statistics tracking platform with real-time features.
+                Includes friend system with leaderboards, group collaboration, live chat via WebSocket,
+                and comprehensive progress tracking with heatmaps. Built with Spring Boot backend and
+                Flutter mobile app with JWT authentication.
+              </p>
+            </div>
+            <div class="project-tech">
+              <span>Spring Boot</span>
+              <span>Flutter</span>
+              <span>MySQL</span>
+              <span>WebSocket</span>
+              <span>JWT</span>
+            </div>
+            <div class="project-links"></div>
+          </div>
+          <div class="project-image">
+            <img src="assets/LStats.png" alt="LStats Project" />
+          </div>
+        </div>
+
+        <div class="project-featured reverse">
+          <div class="project-content">
+            <p class="project-label">Project 2</p>
+            <h3 class="project-name">API Limiter</h3>
+            <div class="project-description">
+              <p>
+                A comprehensive API rate limiting and monitoring platform. Features token-bucket based
+                rate limiting using Redis, API key management per project, real-time usage logging and
+                request tracking. Built with Spring Boot backend and React frontend with JWT-based authentication.
+              </p>
+            </div>
+            <div class="project-tech">
+              <span>Spring Boot</span>
+              <span>React</span>
+              <span>MySQL</span>
+              <span>Redis</span>
+              <span>JWT</span>
+            </div>
+            <div class="project-links"></div>
+          </div>
+          <div class="project-image">
+            <video autoplay muted loop playsinline>
+              <source src="assets/apilimiter.mp4" type="video/mp4">
+              <img src="assets/APILimiter.png" alt="API Limiter Project" />
+            </video>
+          </div>
+        </div>
+      </div><!-- end springboot projects -->
 
     </div>
   </section>

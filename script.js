@@ -4,11 +4,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // MODE SWITCHING
   // =============================================
   const html = document.documentElement;
-  const btnSpringBoot = document.getElementById('btnSpringBoot');
   const btnFlutter = document.getElementById('btnFlutter');
+  const btnSpringBoot = document.getElementById('btnSpringBoot');
+  const resumeBtn = document.getElementById('resumeBtn');
 
-  let currentMode = 'springboot';
+  // Flutter is default
+  let currentMode = 'flutter';
   let isSwitching = false;
+
+  // Resume files per mode
+  const resumeFiles = {
+    flutter: 'assets/Harshit_CV.pdf',
+    springboot: 'assets/Harshit_Singh_CV.pdf'
+  };
+
+  function updateResume(mode) {
+    if (resumeBtn) {
+      resumeBtn.setAttribute('href', resumeFiles[mode]);
+    }
+  }
 
   function setMode(mode) {
     if (mode === currentMode || isSwitching) return;
@@ -17,14 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     html.setAttribute('data-mode', mode);
 
-    btnSpringBoot.classList.toggle('active', mode === 'springboot');
     btnFlutter.classList.toggle('active', mode === 'flutter');
+    btnSpringBoot.classList.toggle('active', mode === 'springboot');
+
+    // Update resume link
+    updateResume(mode);
 
     document.body.classList.add('switching');
     setTimeout(() => document.body.classList.remove('switching'), 300);
 
     const outClass = mode === 'flutter' ? 'springboot-content' : 'flutter-content';
-    const inClass  = mode === 'flutter' ? 'flutter-content'    : 'springboot-content';
+    const inClass  = mode === 'flutter' ? 'flutter-content'   : 'springboot-content';
 
     const outEls = document.querySelectorAll(`.mode-content.${outClass}`);
     const inEls  = document.querySelectorAll(`.mode-content.${inClass}`);
@@ -58,8 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 260);
   }
 
-  btnSpringBoot.addEventListener('click', () => setMode('springboot'));
   btnFlutter.addEventListener('click', () => setMode('flutter'));
+  btnSpringBoot.addEventListener('click', () => setMode('springboot'));
+
+  // Set initial resume (flutter is default)
+  updateResume('flutter');
 
   // =============================================
   // SMOOTH SCROLL
@@ -159,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.08 });
 
     document.querySelectorAll('.project-featured').forEach(el => {
-      // Only animate if not already animated
       if (el.style.opacity !== '1') {
         el.style.opacity = '0';
         el.style.transform = 'translateY(24px)';
