@@ -19,6 +19,8 @@
   --font-mono: 'Space Mono', monospace;
 
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* =============================================
@@ -122,7 +124,7 @@ section {
   font-weight: 400;
   border-radius: 100px;
   cursor: pointer;
-  transition: color 0.25s ease;
+  transition: color 0.25s ease, transform 0.2s var(--ease-smooth);
   white-space: nowrap;
   min-width: 130px;
   -webkit-tap-highlight-color: transparent;
@@ -133,7 +135,8 @@ section {
 }
 
 .pill-btn:focus { outline: none; }
-.pill-btn:active { outline: none; }
+.pill-btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.pill-btn:active { transform: scale(0.96); }
 
 .pill-btn.active { color: #0a0a0a; }
 
@@ -153,10 +156,11 @@ section {
   width: calc(50% - 7px);
   background: var(--color-accent);
   border-radius: 100px;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+  transition: transform 0.45s var(--ease-snap),
               background-color 0.4s ease;
   z-index: 1;
   pointer-events: none;
+  will-change: transform;
 }
 
 /* Flutter is first pill slot — slider starts at left (default) */
@@ -181,8 +185,10 @@ section {
 
 .social-sidebar a {
   color: var(--color-text);
-  transition: var(--transition);
+  transition: color 0.3s ease, transform 0.3s var(--ease-smooth), opacity 0.3s ease;
   opacity: 0.7;
+  display: inline-block;
+  border-radius: 3px;
 }
 
 .social-sidebar a:hover {
@@ -212,6 +218,17 @@ section {
   right: 0;
   z-index: 1000;
   background-color: transparent;
+  backdrop-filter: blur(0px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0);
+  transition: background-color 0.4s var(--ease-smooth),
+              box-shadow 0.4s var(--ease-smooth),
+              backdrop-filter 0.4s var(--ease-smooth);
+}
+
+.navbar.scrolled {
+  background-color: color-mix(in srgb, var(--color-bg) 70%, transparent);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .nav-container {
@@ -235,11 +252,14 @@ section {
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
-  transition: var(--transition);
+  transition: color 0.3s var(--ease-smooth);
   position: relative;
+  border-radius: 3px;
 }
 
 .nav-link:hover { color: var(--color-accent); }
+
+.nav-link:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
 
 .nav-link::before {
   content: '';
@@ -249,7 +269,7 @@ section {
   width: 0;
   height: 2px;
   background-color: var(--color-accent);
-  transition: var(--transition);
+  transition: width 0.35s var(--ease-smooth);
 }
 
 .nav-link:hover::before,
@@ -394,7 +414,7 @@ section {
 .btn {
   display: inline-block;
   padding: 0.85rem 1.75rem;
-  border-radius: 4px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
@@ -402,29 +422,38 @@ section {
   transition: var(--transition);
 }
 
+.btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+.btn:active { transform: scale(0.97); }
+
 .btn-primary {
   background-color: var(--color-accent);
   color: #0a0a0a;
   border-color: var(--color-accent);
-  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.25s ease;
+  transition: background-color 0.35s var(--ease-smooth), border-color 0.35s var(--ease-smooth),
+              color 0.25s ease, transform 0.25s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth);
 }
 
 .btn-primary:hover {
   background-color: transparent;
   color: var(--color-accent);
   border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px var(--color-accent);
 }
 
 .btn-secondary {
   background-color: transparent;
   color: var(--color-accent);
   border-color: var(--color-accent);
-  transition: background-color 0.4s ease, color 0.25s ease, border-color 0.4s ease;
+  transition: background-color 0.35s var(--ease-smooth), color 0.25s ease, border-color 0.35s var(--ease-smooth),
+              transform 0.25s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth);
 }
 
 .btn-secondary:hover {
   background-color: var(--color-accent);
   color: #0a0a0a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px var(--color-accent);
 }
 
 .btn-large {
@@ -513,11 +542,13 @@ section {
 .tech-card {
   background: transparent;
   border: none;
-  padding: 0;
+  border-left: 2px solid transparent;
+  padding: 0 0 0 0;
   width: 100%;
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.6s var(--ease-smooth), transform 0.6s var(--ease-smooth),
+              border-color 0.35s ease, padding 0.35s ease;
 }
 
 .tech-card.visible {
@@ -525,12 +556,20 @@ section {
   transform: translateY(0);
 }
 
+.tech-card:hover {
+  border-left-color: var(--color-accent);
+  padding-left: 1rem;
+}
+
 .tech-card h3 {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--color-text);
+  transition: color 0.3s ease;
 }
+
+.tech-card:hover h3 { color: var(--color-accent); }
 
 .tech-card p {
   font-size: 1rem;
@@ -629,7 +668,9 @@ section {
 
 .project-links a {
   color: var(--color-text);
-  transition: var(--transition);
+  transition: color 0.3s ease, transform 0.3s var(--ease-smooth);
+  display: inline-block;
+  border-radius: 3px;
 }
 
 .project-links a:hover {
@@ -637,9 +678,15 @@ section {
   transform: translateY(-3px);
 }
 
-/* Project image — no hover border/shadow in any mode */
+.project-links a:focus-visible,
+.social-sidebar a:focus-visible,
+.mobile-social-links a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
 .project-image {
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   border: none;
   height: 100%;
@@ -648,12 +695,12 @@ section {
   justify-content: center;
   min-height: 260px;
   background: transparent;
-  transition: none;
+  transition: transform 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
 }
 
 .project-image:hover {
-  border: none;
-  box-shadow: none;
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
 }
 
 .project-image img,
@@ -759,8 +806,10 @@ section {
 
 .mobile-social-links a {
   color: var(--color-text);
-  transition: var(--transition);
+  transition: color 0.3s ease, transform 0.3s var(--ease-smooth), opacity 0.3s ease;
   opacity: 0.7;
+  display: inline-block;
+  border-radius: 3px;
 }
 
 .mobile-social-links a:hover {

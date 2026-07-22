@@ -132,6 +132,18 @@ document.addEventListener('DOMContentLoaded', () => {
   highlightNavigation();
 
   // =============================================
+  // NAVBAR SCROLL SHADOW
+  // =============================================
+  const navbar = document.querySelector('.navbar');
+
+  function updateNavbarScrolled() {
+    if (navbar) navbar.classList.toggle('scrolled', window.pageYOffset > 20);
+  }
+
+  window.addEventListener('scroll', updateNavbarScrolled, { passive: true });
+  updateNavbarScrolled();
+
+  // =============================================
   // INTERSECTION OBSERVER — tech cards
   // =============================================
   const observerOptions = {
@@ -182,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (el.style.opacity !== '1') {
         el.style.opacity = '0';
         el.style.transform = 'translateY(24px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transition = 'opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
       }
       projectObserver.observe(el);
     });
@@ -246,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.style.opacity = '0';
   window.addEventListener('load', () => {
     setTimeout(() => {
-      document.body.style.transition = 'opacity 0.5s ease';
+      document.body.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
       document.body.style.opacity = '1';
     }, 80);
   });
