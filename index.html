@@ -1,367 +1,240 @@
 <!DOCTYPE html>
-<html lang="en" data-mode="flutter">
+<html lang="en" data-mode="apps">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Harshit Singh</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harshit Singh — Flutter, Android &amp; Spring Boot developer</title>
+  <meta name="description" content="Harshit Singh builds mobile apps in Flutter and Kotlin, and backends, APIs and AI tools in Spring Boot and Python.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Harshit Singh — Portfolio">
+  <meta property="og:description" content="Mobile apps in Flutter &amp; Kotlin. Backends, APIs and AI tools in Spring Boot &amp; Python.">
+  <meta property="og:image" content="assets/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23d93a1e'/%3E%3C/svg%3E">
+  <script>
+    // Set mode before first paint so there is no flash of the wrong content.
+    (function () {
+      var q = new URLSearchParams(location.search).get('mode');
+      var m = q || (function () { try { return localStorage.getItem('mode'); } catch (e) { return null; } })();
+      if (m === 'apps' || m === 'backend') document.documentElement.setAttribute('data-mode', m);
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="preload" as="image" href="assets/img/dotz.webp" imagesrcset="assets/img/dotz-sm.webp 640w, assets/img/dotz.webp 1600w" imagesizes="(max-width: 1384px) 100vw, 1320px">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip" href="#index">Skip to projects</a>
 
-<!-- Floating Mode Toggle Pill -->
-<div class="mode-pill" id="modePill">
-
-  <button class="pill-btn active" data-mode="flutter" id="btnFlutter">
-    <span class="pill-inner">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M14.314 0L2.3 12 6 15.7 21.684 0h-7.37zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/>
-      </svg>
-      <span>Flutter</span>
-    </span>
-  </button>
-
-  <button class="pill-btn" data-mode="springboot" id="btnSpringBoot">
-    <span class="pill-inner">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M20.205 16.392c-2.469 3.289-7.741 2.179-11.122 2.338 0 0-.599.034-1.201.133 0 0 .228-.097.519-.198 2.374-.821 3.496-.986 4.939-1.727 2.71-1.388 5.408-4.413 5.957-7.555-1.032 3.022-4.17 5.623-7.027 6.679-1.955.722-5.492 1.424-5.493 1.424a5.28 5.28 0 0 1-.143-.076c-2.405-1.17-2.475-6.38 1.894-8.059 1.916-.736 3.747-.332 5.818-.825 2.208-.525 4.766-2.18 5.805-4.344 1.156 3.022 4.201 6.814 0 11.21z"/>
-      </svg>
-      <span>Spring-Boot</span>
-    </span>
-  </button>
-
-  <div class="pill-slider"></div>
-</div>
-
-  <!-- Social Sidebar -->
-  <div class="social-sidebar">
-    <a href="https://www.linkedin.com/in/harshit-singh-h36" target="_blank" aria-label="LinkedIn">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-      </svg>
-    </a>
-    <a href="mailto:singh36harshit@gmail.com" aria-label="Email">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6"/>
-      </svg>
-    </a>
-    <div class="sidebar-line"></div>
-  </div>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <ul class="nav-menu">
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#technologies" class="nav-link">Technologies</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-      </ul>
+  <header class="topbar">
+    <div class="wrap topbar__inner mono">
+      <a href="#top" class="topbar__name">Harshit Singh / Portfolio 2026</a>
+      <div class="switch" role="group" aria-label="Portfolio focus">
+        <button type="button" data-set-mode="apps" aria-pressed="true">Apps</button>
+        <button type="button" data-set-mode="backend" aria-pressed="false">Backend + AI</button>
+      </div>
+      <nav aria-label="Primary" class="topbar__nav">
+        <a href="#index">Index</a>
+        <a href="assets/Harshit_CV.pdf" download data-only="apps">Resume</a>
+        <a href="assets/Harshit_Singh_CV.pdf" download data-only="backend">Resume</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <!-- ===================== ABOUT ===================== -->
-  <section id="about" class="about-section">
-    <div class="container">
-      <div class="about-content">
-        <p class="about-greeting">Hi, I am</p>
-        <h1 class="about-name">Harshit Singh</h1>
-
-        <!-- Flutter about (shown first) -->
-        <p class="about-description mode-content flutter-content">
-          My expertise lies particularly in <strong>Flutter</strong>.
-          I build beautiful, performant cross-platform apps.
-        </p>
-
-        <!-- Spring Boot about -->
-        <p class="about-description mode-content springboot-content" style="display:none">
-          My expertise lies particularly in <strong>Spring Boot</strong>.
-          I build APIs and Scalable Backend.
-        </p>
-
-        <div class="about-buttons">
-          <a href="mailto:singh36harshit@gmail.com" class="btn btn-primary">Get In Touch</a>
-          <!-- Resume button — src swapped by JS based on mode -->
-          <a href="assets/Harshit_CV.pdf" download id="resumeBtn" class="btn btn-secondary">Resume</a>
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="wrap hero">
+      <h1 class="display" data-only="apps">Apps that<br><span class="accent">stay installed.</span></h1>
+      <h1 class="display" data-only="backend">Backends that<br><span class="accent">hold up.</span></h1>
+      <div class="hero__foot">
+        <p class="lede" data-only="apps">I build cross-platform apps in Flutter and native Android in Kotlin + Jetpack Compose — calm interfaces, offline-first data, small installs.</p>
+        <p class="lede" data-only="backend">Spring Boot APIs, rate limiting, RAG agents and n8n automations — built with tests and docs from day one.</p>
+        <div class="btns">
+          <a class="btn btn--solid" href="mailto:singh36harshit@gmail.com">Email me ↗</a>
+          <a class="btn" href="https://github.com/harshit36singh" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===================== TECHNOLOGIES ===================== -->
-  <section id="technologies" class="technologies-section">
-    <div class="container">
-      <div class="tech-header">
-        <div class="tech-accent"></div>
-        <h2>Technologies</h2>
+    <!-- ============ FEATURED ============ -->
+    <section class="wrap featured-wrap">
+      <a class="featured" data-only="apps" href="https://github.com/harshit36singh/Dotz" target="_blank" rel="noopener">
+        <div class="featured__img">
+          <img src="assets/img/dotz.webp" srcset="assets/img/dotz-sm.webp 640w, assets/img/dotz.webp 1600w" sizes="(max-width: 1384px) 100vw, 1320px" width="1600" height="900" alt="dotz live wallpaper: year, month, goal and life views on Android lock screens" fetchpriority="high" decoding="async">
+        </div>
+        <div class="featured__bar mono">
+          <span>Featured — dotz</span>
+          <span class="muted">Your year, goal or life as dots on your lock screen · Kotlin · Jetpack Compose</span>
+        </div>
+      </a>
+      <a class="featured" data-only="backend" href="https://github.com/harshit36singh/ApiCompass-RAGAiAgent" target="_blank" rel="noopener">
+        <div class="featured__img featured__img--dark">
+          <img src="assets/img/apicompass.webp" width="1536" height="639" alt="ApiCompass dependency graph showing which endpoints produce the auth token" loading="lazy" decoding="async">
+        </div>
+        <div class="featured__bar mono">
+          <span>Featured — ApiCompass</span>
+          <span class="muted">RAG agent that reads your OpenAPI spec, maps dependencies and explains failing tests</span>
+        </div>
+      </a>
+    </section>
+
+    <!-- ============ INDEX ============ -->
+    <section id="index" class="wrap index">
+      <div class="index__head mono">
+        <span>Index</span>
+        <span data-only="apps">07 more projects</span>
+        <span data-only="backend">04 more projects</span>
       </div>
 
-      <!-- Flutter Tech (shown first) -->
-      <div class="mode-content flutter-content">
-        <p class="tech-subtitle">I've worked with a range of technologies related to app development and cross-platform solutions.</p>
-        <div class="tech-grid">
-          <div class="tech-card">
-            <h3>Flutter Development</h3>
-            <p>Experience with Flutter SDK, Dart, Material Design, Custom Widgets.</p>
+      <!-- Apps -->
+      <ol class="rows" data-only="apps">
+        <li class="row">
+          <span class="row__num mono">01</span>
+          <div class="row__body">
+            <h2 class="row__title"><a href="https://github.com/harshit36singh/Mono" target="_blank" rel="noopener">Mono</a></h2>
+            <p>A minimal, one-handed, text-first Android launcher. Favourites sit in thumb reach, every other app is one slide away on the A–Z wave rail, and notifications show as one line under their app.</p>
+            <p class="row__meta mono">Android — Kotlin, launcher, A–Z rail, no tracking</p>
           </div>
-          <div class="tech-card">
-            <h3>Backend &amp; State Management</h3>
-            <p>Experience with REST API, Firebase, Provider, Riverpod.</p>
+          <div class="row__thumb"><img src="assets/img/mono-sm.webp" width="640" height="360" alt="Mono launcher screens: home, A–Z rail, search and settings" loading="lazy" decoding="async" style="object-position: 70% center"></div>
+        </li>
+        <li class="row">
+          <span class="row__num mono">02</span>
+          <div class="row__body">
+            <h2 class="row__title"><a href="https://github.com/harshit36singh/Focuspet" target="_blank" rel="noopener">Focus Pet</a></h2>
+            <p>A retro pixel pet that attacks when you open a distracting app — and thrives when you stay focused. Flutter UI with native Kotlin overlay and accessibility services.</p>
+            <p class="row__meta mono">Android — Flutter, Kotlin, Accessibility Service, MVVM</p>
           </div>
-          <div class="tech-card">
-            <h3>Tools</h3>
-            <p>Experience with Android Studio, VS Code, Postman.</p>
+          <div class="row__thumb row__thumb--pet"><img src="assets/img/focuspet-sm.webp" width="640" height="640" alt="Focus Pet pixel dog app icon" loading="lazy" decoding="async"></div>
+        </li>
+        <li class="row">
+          <span class="row__num mono">03</span>
+          <div class="row__body">
+            <h2 class="row__title"><a href="https://github.com/harshit36singh/lstats" target="_blank" rel="noopener">LStats</a></h2>
+            <p>LeetCode tracker with friend leaderboards, group rooms, live chat and progress heatmaps, on a JWT-secured REST API.</p>
+            <p class="row__meta mono">Flutter — Provider, Hive, JWT</p>
           </div>
-        </div>
-      </div>
+          <div class="row__thumb"><img src="assets/img/lstats-sm.webp" width="640" height="455" alt="LStats app screens" loading="lazy" decoding="async"></div>
+        </li>
+        <li class="row">
+          <span class="row__num mono">04</span>
+          <div class="row__body">
+            <h2 class="row__title"><a href="https://github.com/harshit36singh/NextUp" target="_blank" rel="noopener">NextUp</a></h2>
+            <p>Track upcoming movies, shows and anime from TMDB and AniList, with local reminders, shareable lists and a spoiler-free blind mode.</p>
+            <p class="row__meta mono">Flutter — TMDB, AniList, notifications, offline-first</p>
+          </div>
+          <div class="row__thumb"><img src="assets/img/nextup-sm.webp" width="640" height="542" alt="NextUp app screens" loading="lazy" decoding="async"></div>
+        </li>
+        <li class="row">
+          <span class="row__num mono">05</span>
+          <div class="row__body">
+            <h2 class="row__title"><a href="https://github.com/harshit36singh/tempora" target="_blank" rel="noopener">Tempora</a></h2>
+            <p>Minimal, gesture-driven weather: swipe between saved cities, swipe up for detail, and themes that follow the sky.</p>
+            <p class="row__meta mono">Flutter — OpenWeatherMap, Geolocator</p>
+          </div>
+          <div class="row__thumb"><img src="assets/img/tempora-sm.webp" width="430" height="640" alt="Tempora weather app screens" loading="lazy" decoding="async"></div>
+        </li>
+        <li class="row">
+          <span class="row__num mono">06</span>
+          <div class="row__body">
+            <h2 class="row__title"><a href="https://github.com/harshit36singh/Planz" target="_blank" rel="noopener">Planz</a></h2>
+            <p>Task manager with voice input, calendar and 24-hour timeline views, priorities, soft delete and stats.</p>
+            <p class="row__meta mono">Flutter — Firebase, Riverpod, Hive, speech-to-text</p>
+          </div>
+          <div class="row__thumb"><img src="assets/img/planz-sm.webp" width="640" height="367" alt="Planz task app screens" loading="lazy" decoding="async"></div>
+        </li>
+        <li class="row">
+          <span class="row__num mono">07</span>
+          <div class="row__body">
+            <h2 class="row__title"><a href="https://github.com/harshit36singh/noteup" target="_blank" rel="noopener">NoteUp</a></h2>
+            <p>A colourful notes and planner app with a calendar, reminders and quick capture.</p>
+            <p class="row__meta mono">Flutter — Dart, Hive</p>
+          </div>
+          <div class="row__thumb"><img src="assets/img/noteup-sm.webp" width="528" height="640" alt="NoteUp app screens" loading="lazy" decoding="async"></div>
+        </li>
+      </ol>
 
-      <!-- Spring Boot Tech -->
-      <div class="mode-content springboot-content" style="display:none">
-        <p class="tech-subtitle">I've worked with a range of technologies related to app development and microservices.</p>
-        <div class="tech-grid">
-          <div class="tech-card">
-            <h3>Backend</h3>
-            <p>Experience with Spring Boot, Spring Security, RESTful APIs, JWT.</p>
+      <!-- Backend -->
+      <ol class="rows" data-only="backend">
+        <li class="row">
+          <span class="row__num mono">01</span>
+          <div class="row__body">
+            <h2 class="row__title"><a href="https://github.com/harshit36singh/HireFlow-AI-Automated-Job-Discovery" target="_blank" rel="noopener">HireFlow.ai</a></h2>
+            <p>n8n finds open growth roles, Clay and Apollo enrich each company, an LLM drafts personal outreach, and every stage is logged to a funnel dashboard. 11 interviews from 76 notes.</p>
+            <p class="row__meta mono">Automation — n8n, Claude, Postgres, Airtable</p>
           </div>
-          <div class="tech-card">
-            <h3>Databases &amp; Caching</h3>
-            <p>Experience with MySQL, PostgreSQL, Redis.</p>
+          <div class="row__thumb"><img src="assets/img/hireflow-sm.webp" width="640" height="266" alt="HireFlow.ai funnel dashboard" loading="lazy" decoding="async" style="object-position: left top"></div>
+        </li>
+        <li class="row">
+          <span class="row__num mono">02</span>
+          <div class="row__body">
+            <h2 class="row__title"><a href="https://github.com/harshit36singh/APILimiter" target="_blank" rel="noopener">API Limiter</a></h2>
+            <p>Token-bucket rate limiting on Redis, per-project API keys and real-time usage logs, with a React dashboard and JWT auth.</p>
+            <p class="row__meta mono">Spring Boot — Redis, MySQL, React, JWT</p>
+            <button type="button" class="demo-btn mono" data-demo="assets/apilimiter.mp4" data-poster="assets/img/apilimiter.webp">▶ Watch demo</button>
           </div>
-          <div class="tech-card">
-            <h3>DevOps &amp; Testing</h3>
-            <p>Experience with Docker, JUnit, Mockito.</p>
+          <div class="row__thumb"><img src="assets/img/apilimiter-sm.webp" width="640" height="360" alt="API Limiter projects dashboard" loading="lazy" decoding="async" style="object-position: left top"></div>
+        </li>
+        <li class="row">
+          <span class="row__num mono">03</span>
+          <div class="row__body">
+            <h2 class="row__title"><a href="https://github.com/harshit36singh/lstats" target="_blank" rel="noopener">LStats API</a></h2>
+            <p>Backend for the LStats app: friends, leaderboards, group rooms and live chat over WebSocket.</p>
+            <p class="row__meta mono">Spring Boot — MySQL, WebSocket, JWT</p>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+          <div class="row__thumb"><img src="assets/img/lstats-sm.webp" width="640" height="455" alt="LStats app screens" loading="lazy" decoding="async"></div>
+        </li>
+        <li class="row">
+          <span class="row__num mono">04</span>
+          <div class="row__body">
+            <h2 class="row__title"><a href="https://github.com/harshit36singh/WatchApi" target="_blank" rel="noopener">WatchApi</a></h2>
+            <p>Real-time dashboard that monitors Spring Boot endpoints for uptime and latency.</p>
+            <p class="row__meta mono">Spring Boot — Actuator, WebSocket</p>
+          </div>
+          <div class="row__thumb row__thumb--text mono" aria-hidden="true">GET /health<br>200 · 12ms</div>
+        </li>
+      </ol>
+    </section>
 
-  <!-- ===================== PROJECTS ===================== -->
-  <section id="projects" class="projects-section">
-    <div class="container">
+    <!-- ============ STACK ============ -->
+    <section class="wrap stack">
+      <div class="index__head mono"><span>Stack</span></div>
+      <dl class="stack__grid" data-only="apps">
+        <div><dt class="mono">Mobile</dt><dd>Flutter, Dart, Kotlin, Jetpack Compose, Material 3</dd></div>
+        <div><dt class="mono">State &amp; data</dt><dd>Riverpod, Provider, Hive, Firebase, REST</dd></div>
+        <div><dt class="mono">Tools</dt><dd>Android Studio, VS Code, Git, GitHub Actions, Postman</dd></div>
+      </dl>
+      <dl class="stack__grid" data-only="backend">
+        <div><dt class="mono">Backend</dt><dd>Spring Boot, Spring Security, FastAPI, REST, JWT</dd></div>
+        <div><dt class="mono">Data</dt><dd>MySQL, PostgreSQL, Redis</dd></div>
+        <div><dt class="mono">AI &amp; ops</dt><dd>RAG, n8n, Docker, JUnit, Mockito</dd></div>
+      </dl>
+    </section>
+  </main>
 
-      <!-- Flutter Projects (shown first) -->
-      <div class="mode-content flutter-content">
-        <div class="project-featured">
-          <div class="project-content">
-            <p class="project-label">Project 1</p>
-            <h3 class="project-name">LStats — Mobile App</h3>
-            <div class="project-description">
-              <p>
-                The Flutter mobile client for the LStats platform. A fully-featured LeetCode tracker
-                with friend leaderboards, group rooms, live chat, and beautiful progress heatmaps — all
-                built with Flutter, Provider for state, and JWT-authenticated REST API integration.
-              </p>
-            </div>
-            <div class="project-tech">
-              <span>Flutter</span>
-              <span>Dart</span>
-              <span>Provider</span>
-              <span>Hive</span>
-              <span>JWT</span>
-            </div>
-            <div class="project-links"></div>
-          </div>
-          <div class="project-image">
-            <img src="assets/LStats.png" alt="LStats Flutter App" />
-          </div>
-        </div>
-
-        <div class="project-featured reverse">
-          <div class="project-content">
-            <p class="project-label">Project 2</p>
-            <h3 class="project-name">Planz — Task Management App</h3>
-            <div class="project-description">
-              <p>
-                A modern task management Flutter application with voice input, scheduling, and Firebase authentication.
-                Features priority system, calendar view, 24-hour timeline, and natural language processing for voice commands.
-                Includes soft delete system, task statistics, and local storage with Hive database.
-              </p>
-            </div>
-            <div class="project-tech">
-              <span>Flutter</span>
-              <span>Firebase</span>
-              <span>Riverpod</span>
-              <span>Hive</span>
-              <span>Speech-to-Text</span>
-            </div>
-            <div class="project-links"></div>
-          </div>
-          <div class="project-image">
-            <img src="assets/img7.png" alt="Planz Task Management App" />
-          </div>
-        </div>
-
-        <div class="project-featured">
-          <div class="project-content">
-            <p class="project-label">Project 3</p>
-            <h3 class="project-name">Tempora — Weather App</h3>
-            <div class="project-description">
-              <p>
-                A modern, minimalist Flutter weather application focused on clean UI and gesture-based navigation.
-                Supports multiple saved cities with horizontal swipe navigation, location-based weather, and vertical
-                swipe for detailed views. Features dynamic weather-based themes and smooth animations.
-              </p>
-            </div>
-            <div class="project-tech">
-              <span>Flutter</span>
-              <span>Dart</span>
-              <span>OpenWeatherMap API</span>
-              <span>Geolocator</span>
-              <span>SharedPreferences</span>
-            </div>
-            <div class="project-links"></div>
-          </div>
-          <div class="project-image">
-            <img src="assets/tempora.png" alt="Tempora Weather App" />
-          </div>
-        </div>
-
-        <div class="project-featured reverse">
-          <div class="project-content">
-            <p class="project-label">Project 4</p>
-            <h3 class="project-name">NextUp</h3>
-            <div class="project-description">
-              <p>
-                A sleek Flutter app with premium black UI for tracking upcoming movies, TV shows, and anime releases.
-                Features multi-source tracking via TMDB and AniList, local notifications, shareable lists, and blind mode
-                for spoiler-free browsing. All data stored locally with offline-first architecture.
-              </p>
-            </div>
-            <div class="project-tech">
-              <span>Flutter</span>
-              <span>Provider</span>
-              <span>Hive</span>
-              <span>TMDB API</span>
-              <span>Local Notifications</span>
-            </div>
-            <div class="project-links"></div>
-          </div>
-          <div class="project-image">
-            <img src="assets/nextup.png" alt="NextUp App" />
-          </div>
-        </div>
-
-        <div class="project-featured">
-          <div class="project-content">
-            <p class="project-label">Project 5</p>
-            <h3 class="project-name">Dotz — Live Wallpaper</h3>
-            <div class="project-description">
-              <p>
-                A beautiful Flutter &amp; Native Android app that generates dynamic, live wallpapers visualizing your time.
-                Track your year, your life, or your specific goals using highly customizable dot grids and glass aesthetics.
-                Features a true native Android WallpaperService engine with multiple time perspectives — Year, Weekly/Monthly,
-                Life, and Goal modes — plus rich dot shapes including Glass Bubbles, Stars, and Squares.
-                Supports custom background images, color theming, inspirational quotes via API, and a lockscreen simulation preview.
-              </p>
-            </div>
-            <div class="project-tech">
-              <span>Flutter</span>
-              <span>Dart</span>
-              <span>Kotlin</span>
-              <span>WallpaperService</span>
-              <span>Hive</span>
-              <span>Riverpod</span>
-            </div>
-            <div class="project-links"></div>
-          </div>
-          <div class="project-image">
-            <img src="assets/dotz.png" alt="Dotz Live Wallpaper App" />
-          </div>
-        </div>
-      </div><!-- end flutter projects -->
-
-      <!-- Spring Boot Projects -->
-      <div class="mode-content springboot-content" style="display:none">
-        <div class="project-featured">
-          <div class="project-content">
-            <p class="project-label">Project 1</p>
-            <h3 class="project-name">LStats — LeetCode Tracker</h3>
-            <div class="project-description">
-              <p>
-                A full-stack LeetCode statistics tracking platform with real-time features.
-                Includes friend system with leaderboards, group collaboration, live chat via WebSocket,
-                and comprehensive progress tracking with heatmaps. Built with Spring Boot backend and
-                Flutter mobile app with JWT authentication.
-              </p>
-            </div>
-            <div class="project-tech">
-              <span>Spring Boot</span>
-              <span>Flutter</span>
-              <span>MySQL</span>
-              <span>WebSocket</span>
-              <span>JWT</span>
-            </div>
-            <div class="project-links"></div>
-          </div>
-          <div class="project-image">
-            <img src="assets/LStats.png" alt="LStats Project" />
-          </div>
-        </div>
-
-        <div class="project-featured reverse">
-          <div class="project-content">
-            <p class="project-label">Project 2</p>
-            <h3 class="project-name">API Limiter</h3>
-            <div class="project-description">
-              <p>
-                A comprehensive API rate limiting and monitoring platform. Features token-bucket based
-                rate limiting using Redis, API key management per project, real-time usage logging and
-                request tracking. Built with Spring Boot backend and React frontend with JWT-based authentication.
-              </p>
-            </div>
-            <div class="project-tech">
-              <span>Spring Boot</span>
-              <span>React</span>
-              <span>MySQL</span>
-              <span>Redis</span>
-              <span>JWT</span>
-            </div>
-            <div class="project-links"></div>
-          </div>
-          <div class="project-image">
-            <video autoplay muted loop playsinline>
-              <source src="assets/apilimiter.mp4" type="video/mp4">
-              <img src="assets/APILimiter.png" alt="API Limiter Project" />
-            </video>
-          </div>
-        </div>
-      </div><!-- end springboot projects -->
-
-    </div>
-  </section>
-
-  <!-- ===================== CONTACT ===================== -->
-  <section id="contact" class="contact-section">
-    <div class="container">
-      <div class="contact-content">
-        <h2>Get In Touch</h2>
-        <p class="contact-description">
-          If you need to know anything about my projects or want to just interact,
-          I will respond back so feel free to contact me.
-        </p>
-        <a href="mailto:singh36harshit@gmail.com" class="btn btn-primary btn-large">Email</a>
-
-        <div class="mobile-social-links">
-          <a href="https://www.linkedin.com/in/harshit-singh-h36" target="_blank" aria-label="LinkedIn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-            </svg>
-          </a>
-          <a href="mailto:singh36harshit@gmail.com" aria-label="Email">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-          </a>
-        </div>
+  <!-- ============ CONTACT ============ -->
+  <footer id="contact" class="contact">
+    <div class="wrap contact__inner">
+      <a class="contact__big" href="mailto:singh36harshit@gmail.com">Let’s build<br>something ↗</a>
+      <div class="contact__bar mono">
+        <a href="mailto:singh36harshit@gmail.com">singh36harshit@gmail.com</a>
+        <span class="contact__links">
+          <a href="https://www.linkedin.com/in/harshit-singh-h36" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/harshit36singh" target="_blank" rel="noopener">GitHub</a>
+        </span>
+        <span>© 2026</span>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <script src="script.js"></script>
+  <dialog class="demo" id="demo" aria-label="API Limiter demo video">
+    <form method="dialog"><button class="demo__close mono" aria-label="Close video">Close ✕</button></form>
+    <video controls playsinline preload="none"></video>
+  </dialog>
+
+  <script src="script.js" defer></script>
 </body>
 </html>

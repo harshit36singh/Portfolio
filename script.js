@@ -1,266 +1,77 @@
-document.addEventListener('DOMContentLoaded', () => {
+(function () {
+  'use strict';
 
-  // =============================================
-  // MODE SWITCHING
-  // =============================================
-  const html = document.documentElement;
-  const btnFlutter = document.getElementById('btnFlutter');
-  const btnSpringBoot = document.getElementById('btnSpringBoot');
-  const resumeBtn = document.getElementById('resumeBtn');
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('[data-set-mode]');
 
-  // Flutter is default
-  let currentMode = 'flutter';
-  let isSwitching = false;
-
-  // Resume files per mode
-  const resumeFiles = {
-    flutter: 'assets/Harshit_CV.pdf',
-    springboot: 'assets/Harshit_Singh_CV.pdf'
-  };
-
-  function updateResume(mode) {
-    if (resumeBtn) {
-      resumeBtn.setAttribute('href', resumeFiles[mode]);
-    }
-  }
-
-  function setMode(mode) {
-    if (mode === currentMode || isSwitching) return;
-    isSwitching = true;
-    currentMode = mode;
-
-    html.setAttribute('data-mode', mode);
-
-    btnFlutter.classList.toggle('active', mode === 'flutter');
-    btnSpringBoot.classList.toggle('active', mode === 'springboot');
-
-    // Update resume link
-    updateResume(mode);
-
-    document.body.classList.add('switching');
-    setTimeout(() => document.body.classList.remove('switching'), 300);
-
-    const outClass = mode === 'flutter' ? 'springboot-content' : 'flutter-content';
-    const inClass  = mode === 'flutter' ? 'flutter-content'   : 'springboot-content';
-
-    const outEls = document.querySelectorAll(`.mode-content.${outClass}`);
-    const inEls  = document.querySelectorAll(`.mode-content.${inClass}`);
-
-    outEls.forEach(el => {
-      el.style.transition = 'opacity 0.25s ease';
-      el.style.opacity = '0';
+  // ---------- Mode switch (Apps / Backend + AI) ----------
+  function setMode(mode, save) {
+    root.setAttribute('data-mode', mode);
+    buttons.forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.setMode === mode));
     });
-
-    setTimeout(() => {
-      outEls.forEach(el => {
-        el.style.display = 'none';
-        el.style.opacity = '';
-        el.style.transition = '';
-      });
-
-      inEls.forEach(el => {
-        el.style.display = '';
-        el.classList.add('fading-in');
-      });
-
-      // Re-observe tech cards for the newly shown content
-      observeTechCards();
-      // Re-setup project animations for newly visible projects
-      setupProjectAnimations();
-
-      setTimeout(() => {
-        inEls.forEach(el => el.classList.remove('fading-in'));
-        isSwitching = false;
-      }, 450);
-    }, 260);
+    if (save) {
+      try { localStorage.setItem('mode', mode); } catch (e) { /* private mode */ }
+      var url = new URL(location.href);
+      url.searchParams.set('mode', mode);
+      history.replaceState(null, '', url);
+    }
+    revealVisible();
   }
 
-  btnFlutter.addEventListener('click', () => setMode('flutter'));
-  btnSpringBoot.addEventListener('click', () => setMode('springboot'));
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (root.getAttribute('data-mode') !== b.dataset.setMode) setMode(b.dataset.setMode, true);
+    });
+  });
+  setMode(root.getAttribute('data-mode') || 'apps', false);
 
-  // Set initial resume (flutter is default)
-  updateResume('flutter');
+  // ---------- Demo video: loaded only when opened ----------
+  var dialog = document.getElementById('demo');
+  var video = dialog && dialog.querySelector('video');
 
-  // =============================================
-  // SMOOTH SCROLL
-  // =============================================
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
-      if (href !== '#' && href !== '') {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
+  document.querySelectorAll('[data-demo]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (!dialog || typeof dialog.showModal !== 'function') {
+        window.open(btn.dataset.demo, '_blank', 'noopener');
+        return;
       }
+      video.poster = btn.dataset.poster || '';
+      if (video.getAttribute('src') !== btn.dataset.demo) video.src = btn.dataset.demo;
+      dialog.showModal();
+      video.play().catch(function () {});
     });
   });
 
-  // =============================================
-  // ACTIVE NAV HIGHLIGHTING
-  // =============================================
-  const sections = document.querySelectorAll('section[id]');
-
-  function highlightNavigation() {
-    const scrollY = window.pageYOffset;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-    let current = '';
-
-    if (scrollY + windowHeight >= documentHeight - 50) {
-      current = sections[sections.length - 1].getAttribute('id');
-    } else {
-      sections.forEach(section => {
-        if (scrollY >= section.offsetTop - 200) {
-          current = section.getAttribute('id');
-        }
-      });
-    }
-
-    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-    if (current) {
-      const activeLink = document.querySelector(`.nav-link[href="#${current}"]`);
-      if (activeLink) activeLink.classList.add('active');
-    }
+  if (dialog) {
+    dialog.addEventListener('close', function () { video.pause(); });
+    dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });
   }
 
-  window.addEventListener('scroll', highlightNavigation, { passive: true });
-  highlightNavigation();
+  // ---------- Gentle reveal on scroll ----------
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var targets = document.querySelectorAll('.featured, .row, .stack__grid');
+  var io = null;
 
-  // =============================================
-  // NAVBAR SCROLL SHADOW
-  // =============================================
-  const navbar = document.querySelector('.navbar');
-
-  function updateNavbarScrolled() {
-    if (navbar) navbar.classList.toggle('scrolled', window.pageYOffset > 20);
+  if (!reduce && 'IntersectionObserver' in window) {
+    targets.forEach(function (el) { el.classList.add('reveal'); });
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    targets.forEach(function (el) { io.observe(el); });
   }
 
-  window.addEventListener('scroll', updateNavbarScrolled, { passive: true });
-  updateNavbarScrolled();
-
-  // =============================================
-  // INTERSECTION OBSERVER — tech cards
-  // =============================================
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -60px 0px'
-  };
-
-  let techObserver;
-
-  function observeTechCards() {
-    if (techObserver) techObserver.disconnect();
-
-    techObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          techObserver.unobserve(entry.target);
-        }
+  // Newly shown content after a mode switch should appear immediately if on screen.
+  function revealVisible() {
+    if (!io) return;
+    requestAnimationFrame(function () {
+      targets.forEach(function (el) {
+        if (el.classList.contains('is-in')) return;
+        var r = el.getBoundingClientRect();
+        if (r.height && r.top < innerHeight && r.bottom > 0) el.classList.add('is-in');
       });
-    }, observerOptions);
-
-    document.querySelectorAll('.tech-card:not(.visible)').forEach(el => {
-      techObserver.observe(el);
     });
   }
-
-  observeTechCards();
-
-  // =============================================
-  // PROJECT FEATURED ANIMATION
-  // =============================================
-  let projectObserver;
-
-  function setupProjectAnimations() {
-    if (projectObserver) projectObserver.disconnect();
-
-    projectObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          projectObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-
-    document.querySelectorAll('.project-featured').forEach(el => {
-      if (el.style.opacity !== '1') {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(24px)';
-        el.style.transition = 'opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
-      }
-      projectObserver.observe(el);
-    });
-  }
-
-  setupProjectAnimations();
-
-  // =============================================
-  // IMAGE BLUR-IN ON LOAD
-  // =============================================
-  document.querySelectorAll('.project-image img').forEach(img => {
-    if (!img.complete) {
-      img.style.filter = 'blur(8px)';
-      img.addEventListener('load', () => {
-        img.style.transition = 'filter 0.4s ease';
-        img.style.filter = 'blur(0)';
-      });
-    }
-  });
-
-  // =============================================
-  // EMAIL COPY-TO-CLIPBOARD TOAST
-  // =============================================
-  document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
-    link.addEventListener('click', () => {
-      const email = link.getAttribute('href').replace('mailto:', '');
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(email).then(() => {
-          const accent = getComputedStyle(document.documentElement)
-            .getPropertyValue('--color-accent').trim();
-          const toast = document.createElement('div');
-          toast.textContent = 'Email copied to clipboard!';
-          toast.style.cssText = `
-            position: fixed;
-            bottom: 100px;
-            right: 28px;
-            background: ${accent};
-            color: #0a0a0a;
-            padding: .75rem 1.5rem;
-            border-radius: 6px;
-            font-family: 'Space Mono', monospace;
-            font-size: .8rem;
-            font-weight: 600;
-            z-index: 10000;
-            animation: toastIn 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0,0,0,.4);
-          `;
-          document.body.appendChild(toast);
-          setTimeout(() => {
-            toast.style.animation = 'toastOut 0.3s ease forwards';
-            setTimeout(() => toast.remove(), 300);
-          }, 2000);
-        });
-      }
-    });
-  });
-
-  // =============================================
-  // PAGE FADE-IN ON LOAD
-  // =============================================
-  document.body.style.opacity = '0';
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.body.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-      document.body.style.opacity = '1';
-    }, 80);
-  });
-
-});
+})();
